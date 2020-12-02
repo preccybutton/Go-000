@@ -1,0 +1,22 @@
+package week02
+
+import (
+  "github.com/pkg/errors"
+	"database/sql"
+	"golang.org/x/tools/go/ssa/interp/testdata/src/fmt"
+)
+
+func service(id int) error {
+	return errors.WithMessage(dao(id),"failed")
+}
+
+
+func dao(id int) error {
+	return errors.Wrap(sql.ErrNoRows,"dao failed")
+}
+
+func main() {
+	if err := service(7); errors.Cause(err) == sql.ErrNoRows{
+		fmt.Printf("null %v\n",err)
+	}
+}
