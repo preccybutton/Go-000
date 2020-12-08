@@ -19,7 +19,7 @@ func StartServe(ctx context.Context, addr string, handler http.HandlerFunc, isEx
 		case <- ctx.Done():
 			ctx2, _  := context.WithTimeout(context.Background(), 2*time.Second)
 			s.Shutdown(ctx2)
-			isExist <- errors.New("aaa")
+			isExist <- nil
 
 		case <- stop:
 			isExist <- s.Shutdown(context.Background())
