@@ -1,0 +1,14 @@
+syntax = "proto3";
+package api;
+
+service GetTestDataService{
+    rpc GetData(GetDataReq) returns(GetDataRsp) {};
+}
+
+message GetDataReq{
+    string data = 1;
+}
+
+message GetDataRsp{
+    string data = 1;
+}
